@@ -1,0 +1,16 @@
+{
+  "name": "05.clase",
+  "version": "1.0.0",
+  "description": "Prueba de package.json",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start" : "node index.js"
+  },
+  "author": "Jeremias",
+  "license": "ISC",
+  "dependencies": {
+    "luxon": "^3.7.2"
+  }
+}
+  
