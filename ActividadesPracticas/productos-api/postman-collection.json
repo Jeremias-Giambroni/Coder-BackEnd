@@ -1,0 +1,284 @@
+{
+  "info": {
+    "name": "Express API - Productos",
+    "description": "Colección de pruebas para la API de productos",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Crear Producto - Mouse Gamer",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Mouse Gamer\",\n  \"precio\": 45.99,\n  \"categoria\": \"Periféricos\",\n  \"stock\": 50\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/productos",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "productos"]
+        }
+      }
+    },
+    {
+      "name": "2. Crear Producto - Laptop",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Laptop Dell\",\n  \"precio\": 1200,\n  \"categoria\": \"Computadoras\",\n  \"stock\": 15\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/productos",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "productos"]
+        }
+      }
+    },
+    {
+      "name": "3. Crear Producto - Teclado",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Teclado Mecánico RGB\",\n  \"precio\": 89.99,\n  \"categoria\": \"Periféricos\",\n  \"stock\": 30\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/productos",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "productos"]
+        }
+      }
+    },
+    {
+      "name": "4. ERROR - Producto sin precio",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Monitor\",\n  \"categoria\": \"Pantallas\",\n  \"stock\": 20\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/productos",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "productos"]
+        }
+      }
+    },
+    {
+      "name": "5. ERROR - Precio negativo",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Audífonos\",\n  \"precio\": -25,\n  \"categoria\": \"Audio\",\n  \"stock\": 10\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/productos",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "productos"]
+        }
+      }
+    },
+    {
+      "name": "6. Obtener todos los productos",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/productos",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "productos"]
+        }
+      }
+    },
+    {
+      "name": "7. Obtener producto por ID (1)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/productos/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "productos", "1"]
+        }
+      }
+    },
+    {
+      "name": "8. ERROR - Producto no existe",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/productos/999",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "productos", "999"]
+        }
+      }
+    },
+    {
+      "name": "9. Actualizar producto (PUT)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"precio\": 49.99,\n  \"stock\": 45\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/productos/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "productos", "1"]
+        }
+      }
+    },
+    {
+      "name": "10. Eliminar producto",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/productos/2",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "productos", "2"]
+        }
+      }
+    },
+    {
+      "name": "11. EXTRA - Filtrar por categoría",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/productos/categoria/Periféricos",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "productos", "categoria", "Periféricos"]
+        }
+      }
+    },
+    {
+      "name": "12. EXTRA - Filtrar por rango de precio",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/productos?precioMin=40&precioMax=100",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "productos"],
+          "query": [
+            {
+              "key": "precioMin",
+              "value": "40"
+            },
+            {
+              "key": "precioMax",
+              "value": "100"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "13. EXTRA - Actualizar solo stock (PATCH)",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"stock\": 100\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/productos/1/stock",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "productos", "1", "stock"]
+        }
+      }
+    },
+    {
+      "name": "14. EXTRA - Buscar por nombre",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/productos/buscar?nombre=mouse",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "productos", "buscar"],
+          "query": [
+            {
+              "key": "nombre",
+              "value": "mouse"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
