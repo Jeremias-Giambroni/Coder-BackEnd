@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoderHouse - Upload de Imágenes</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Subir Imagen</h1>
+        
+        <form id="uploadForm" action="/upload" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="myfile">Selecciona una imagen:</label>
+                <input type="file" name="myfile" id="myfile" accept="image/*" required>
+                <small>Formatos permitidos: JPG, PNG, GIF, WEBP (máx. 5MB)</small>
+            </div>
+            <button type="submit">Subir Imagen</button>
+        </form>
+
+        <div id="preview" style="display: none;">
+            <h2>Vista Previa:</h2>
+            <img id="previewImage" src="" alt="Preview">
+        </div>
+
+        <div id="result" style="display: none;">
+            <h2>Resultado:</h2>
+            <div id="resultContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // Preview de la imagen antes de subirla
+        document.getElementById('myfile').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('previewImage').src = e.target.result;
+                    document.getElementById('preview').style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Manejo del envío del formulario
+        document.getElementById('uploadForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const resultDiv = document.getElementById('result');
+            const resultContent = document.getElementById('resultContent');
+
+            try {
+                const response = await fetch('/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (data.status === 'success') {
+                    resultContent.innerHTML = `
+                        <div class="success">
+                            <p><strong>✓ ${data.message}</strong></p>
+                            <p>Nombre del archivo: ${data.file.filename}</p>
+                            <p>Tamaño: ${(data.file.size / 1024).toFixed(2)} KB</p>
+                            <img src="${data.file.path}" alt="Imagen subida" style="max-width: 400px; margin-top: 10px;">
+                        </div>
+                    `;
+                } else {
+                    resultContent.innerHTML = `
+                        <div class="error">
+                            <p><strong>✗ Error:</strong> ${data.error}</p>
+                        </div>
+                    `;
+                }
+                
+                resultDiv.style.display = 'block';
+            } catch (error) {
+                resultContent.innerHTML = `
+                    <div class="error">
+                        <p><strong>✗ Error al subir la imagen:</strong> ${error.message}</p>
+                    </div>
+                `;
+                resultDiv.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
+
